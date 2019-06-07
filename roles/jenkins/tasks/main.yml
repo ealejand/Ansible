@@ -1,18 +1,26 @@
 ---
 # tasks file for jenkins
 
+- name: Remove Java 1.7
+  yum:
+    name: java-1.7.0-openjdk
+    state: absent
+
+- name: Install Java 1.8
+  yum:
+    name: java-1.8.0
+    state: present
+
+- name: Download latest Jenkins code package
+  get_url:
+    url: http://pkg.jenkins.io/redhat/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+    mode: 0644
+
 - name: Import Jenkins GPG key
   rpm_key:
     state: present
-    key: http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
-
-- name: Add Jenkins repository
-  yum_repository:
-    name: jenkins
-    description: jenkins repository
-    baseurl: http://pkg.jenkins.io/redhat
-    enabled: no
-    gpgcheck: yes
+    key: https://pkg.jenkins.io/redhat/jenkins.io.key
 
 - name: Install Jenkins
   yum:
