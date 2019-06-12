@@ -1,5 +1,8 @@
 ---
 # tasks file for jenkins
+- set_fact:
+  ansible_facts:
+    pkg_mgr: yum
 
 - name: Remove Java 1.7
   yum:
