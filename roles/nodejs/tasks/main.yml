@@ -5,8 +5,13 @@
     ansible_facts:
       pkg_mgr: yum
 
-- name: Installing node and npm
+- name: Uninstall old java
   yum:
-    name: ['nodejs', 'npm']
+    name: java-1.7.0-openjdk
+    state: absent
+
+- name: Installing java, node, and npm
+  yum:
+    name: ['java-1.8.0', 'nodejs', 'npm']
     enablerepo: epel
     state: installed

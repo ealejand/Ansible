@@ -1,24 +1,10 @@
 ---
 # tasks file for jenkins
-- set_fact:
-  ansible_facts:
-    pkg_mgr: yum
-
-- name: Remove Java 1.7
-  yum:
-    name: java-1.7.0-openjdk
-    state: absent
-
-- name: Install Java 1.8
-  yum:
-    name: java-1.8.0
-    state: present
 
 - name: Download latest Jenkins code package
   get_url:
     url: http://pkg.jenkins.io/redhat/jenkins.repo
     dest: /etc/yum.repos.d/jenkins.repo
-    mode: 0644
 
 - name: Import Jenkins GPG key
   rpm_key:
