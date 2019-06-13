@@ -10,8 +10,8 @@
     name: java-1.7.0-openjdk
     state: absent
 
-- name: Installing java, node, and npm
+- name: Installing java, node, npm, and git
   yum:
-    name: ['java-1.8.0', 'nodejs', 'npm']
+    name: ['java-1.8.0', 'nodejs', 'npm', 'git']
     enablerepo: epel
     state: installed
